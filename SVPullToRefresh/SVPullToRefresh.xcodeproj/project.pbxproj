@@ -11,6 +11,8 @@
 		726F91CC1B413FCE00839933 /* SVPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F91C01B413FCE00839933 /* SVPullToRefresh.framework */; };
 		726F91D31B413FCE00839933 /* SVPullToRefreshTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F91D21B413FCE00839933 /* SVPullToRefreshTests.swift */; };
 		726F91DD1B41431100839933 /* SVPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F91DC1B41431100839933 /* SVPullToRefresh.swift */; };
+		726F91E51B415FC300839933 /* SVPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F91E41B415FC300839933 /* SVPullToRefreshView.swift */; };
+		726F92171B4276AA00839933 /* SVPullToRefreshArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F92161B4276AA00839933 /* SVPullToRefreshArrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		726F91D11B413FCE00839933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		726F91D21B413FCE00839933 /* SVPullToRefreshTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPullToRefreshTests.swift; sourceTree = "<group>"; };
 		726F91DC1B41431100839933 /* SVPullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPullToRefresh.swift; sourceTree = "<group>"; };
+		726F91E41B415FC300839933 /* SVPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPullToRefreshView.swift; sourceTree = "<group>"; };
+		726F92161B4276AA00839933 /* SVPullToRefreshArrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPullToRefreshArrow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				726F91DC1B41431100839933 /* SVPullToRefresh.swift */,
+				726F91E41B415FC300839933 /* SVPullToRefreshView.swift */,
+				726F92161B4276AA00839933 /* SVPullToRefreshArrow.swift */,
 				726F91C51B413FCE00839933 /* SVPullToRefresh.h */,
 				726F91C31B413FCE00839933 /* Supporting Files */,
 			);
@@ -212,7 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				726F92171B4276AA00839933 /* SVPullToRefreshArrow.swift in Sources */,
 				726F91DD1B41431100839933 /* SVPullToRefresh.swift in Sources */,
+				726F91E51B415FC300839933 /* SVPullToRefreshView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

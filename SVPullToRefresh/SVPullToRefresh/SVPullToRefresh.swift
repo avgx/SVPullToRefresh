@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 
-public class SVPullToRefreshView{
     
+public enum SVPullToRefreshPosition{
+        case Top
+        case Bottom
 }
 
 public extension UIScrollView {
+    
     private struct AssociatedKeys{
         static var TopRefreshViewName = "SVPullToRefreshViewTop"
         static var BottomRefreshViewName = "SVPullToRefreshViewBottom"
@@ -24,9 +27,80 @@ public extension UIScrollView {
         static let BottomRefreshViewKeyName = "SVPullToRefreshViewBottom"
     }
     
-    public enum SVPullToRefreshPosition{
-        case SVPullToRefreshPositionTop
-        case SVPullToRefreshPositionBottom
+    private struct Constants{
+        static let SVPullToRefreshViewHeight : CGFloat = 60
+    }
+    
+    var showsTopPullToRefresh : Bool{
+        set{
+            topRefreshView!.hidden = !newValue
+            
+            if !newValue {
+                removeObserverOfRefreshView(topRefreshView!)
+            }
+            else{
+                addObserverOfRefreshView(topRefreshView!)
+            }
+        }
+        
+        get{
+            return !(topRefreshView!.hidden)
+        }
+    }
+    
+    var showsBottomPullToRefresh : Bool{
+        set{
+            bottomRefreshView!.hidden = !newValue
+            
+            if !newValue {
+                removeObserverOfRefreshView(bottomRefreshView!)
+            }
+            else{
+                addObserverOfRefreshView(bottomRefreshView!)
+            }
+        }
+        
+        get{
+            return !(bottomRefreshView!.hidden)
+        }
+    }
+    
+    func addObserverOfRefreshView(refreshView: SVPullToRefreshView)
+    {
+        if !refreshView.isObserving {
+            addObserver(refreshView, forKeyPath: "ContentOffset",
+                options: NSKeyValueObservingOptions.New, context: nil)
+            addObserver(refreshView, forKeyPath: "contentSize",
+                options: NSKeyValueObservingOptions.New, context: nil)
+            addObserver(refreshView, forKeyPath: "frame",
+                options: NSKeyValueObservingOptions.New, context: nil)
+            
+            refreshView.isObserving = true
+            
+            var yOrigin : CGFloat = 0
+            
+            switch(refreshView.position)
+            {
+            case .Top:
+                yOrigin = -Constants.SVPullToRefreshViewHeight
+            case .Bottom:
+                yOrigin = contentSize.height
+            }
+            
+            refreshView.frame = CGRectMake(0, yOrigin, bounds.width, bounds.height)
+        }
+    }
+    
+    func removeObserverOfRefreshView(refreshView: SVPullToRefreshView)
+    {
+        if refreshView.isObserving {
+            removeObserver(refreshView, forKeyPath: "contentOffset")
+            removeObserver(refreshView, forKeyPath: "contentSize")
+            removeObserver(refreshView, forKeyPath: "frame")
+            
+            refreshView.resetScrollViewContentInset()
+            refreshView.isObserving = false
+        }
     }
     
     var topRefreshView : SVPullToRefreshView? {
@@ -60,16 +134,108 @@ public extension UIScrollView {
     }
 
     public func addPullToRefreshWithAction(handler: ()->Void, withPosition position:SVPullToRefreshPosition){
-        println("add Pull to refresh with action")
+        
+        func addHeaderView(headerView: SVPullToRefreshView){
+            headerView.pullToRefreshHandler = handler
+            headerView.scrollView = self
+            headerView.originalTopInset = contentInset.top
+            headerView.originalBottomInset = contentInset.bottom
+            
+            addSubview(headerView)
+        }
+        
         switch(position){
-        case .SVPullToRefreshPositionTop:
+            
+        case .Top:
             if topRefreshView == nil {
-                println("top refresh view is empty")
+                let headerView = SVPullToRefreshView(frame: CGRectMake(0,
+                    -Constants.SVPullToRefreshViewHeight,
+                    bounds.width,
+                    Constants.SVPullToRefreshViewHeight))
+                
+                headerView.position = position
+                
+                addHeaderView(headerView)
+                topRefreshView = headerView
+                
+                showsTopPullToRefresh = true
             }
-        case .SVPullToRefreshPositionBottom:
+            
+        case .Bottom:
             if bottomRefreshView == nil {
-                println("bottom refresh view is empty")
+                let headerView = SVPullToRefreshView(frame: CGRectMake(0,
+                    contentSize.height,
+                    bounds.width,
+                    Constants.SVPullToRefreshViewHeight))
+                
+                headerView.position = position
+                
+                addHeaderView(headerView)
+                bottomRefreshView = headerView
+                
+                showsBottomPullToRefresh = true
             }
         }
     }
+    
+    public func triggerPullToRefresh(position:SVPullToRefreshPosition)
+    {
+        var pullToRefreshView : SVPullToRefreshView!
+        
+        switch(position)
+        {
+        case .Top:
+            pullToRefreshView = topRefreshView
+        case .Bottom:
+            pullToRefreshView = bottomRefreshView
+        }
+        
+        pullToRefreshView.startAnimating()
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

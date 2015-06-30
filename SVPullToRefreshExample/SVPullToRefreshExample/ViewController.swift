@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        scrollView.addPullToRefreshWithAction({()->Void in println("hello")}, withPosition: UIScrollView.SVPullToRefreshPosition.SVPullToRefreshPositionTop)
+        scrollView.addPullToRefreshWithAction({()->Void in println("hello")}, withPosition: .Top)
     }
 
     override func didReceiveMemoryWarning() {
