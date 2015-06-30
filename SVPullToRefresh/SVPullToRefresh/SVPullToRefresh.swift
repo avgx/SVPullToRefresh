@@ -68,7 +68,7 @@ public extension UIScrollView {
     func addObserverOfRefreshView(refreshView: SVPullToRefreshView)
     {
         if !refreshView.isObserving {
-            addObserver(refreshView, forKeyPath: "ContentOffset",
+            addObserver(refreshView, forKeyPath: "contentOffset",
                 options: NSKeyValueObservingOptions.New, context: nil)
             addObserver(refreshView, forKeyPath: "contentSize",
                 options: NSKeyValueObservingOptions.New, context: nil)

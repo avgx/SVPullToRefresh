@@ -53,6 +53,30 @@ public class SVPullToRefreshView : UIView{
     var originalBottomInset : CGFloat = 0
     var isObserving : Bool = false
     
+    
+    lazy var arrow : SVPullToRefreshView = {
+        [unowned self] in
+        
+        let _arrow = SVPullToRefreshView(frame: CGRectMake(0, self.bounds.height - 54, 22, 48))
+        
+        _arrow.backgroundColor = UIColor.clearColor()
+        
+        return _arrow
+    }()
+    
+    lazy var activityIndicatorView : UIActivityIndicatorView = {
+        [unowned self] in
+        
+        let _activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        
+        _activityIndicator.hidesWhenStopped = true
+        
+        self.addSubview(_activityIndicator)
+        
+        return _activityIndicator
+    }()
+    
+    
     var pullToRefreshHandler : (()->Void)?
     weak var scrollView : UIScrollView!
     
