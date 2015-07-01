@@ -15,6 +15,7 @@
 		726F91AD1B413F6100839933 /* SVPullToRefreshExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F91AC1B413F6100839933 /* SVPullToRefreshExampleTests.swift */; };
 		726F91E11B4152AE00839933 /* SVPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726F91E01B4152AE00839933 /* SVPullToRefresh.framework */; };
 		726F91E21B4152AE00839933 /* SVPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 726F91E01B4152AE00839933 /* SVPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		726F92191B43E9B200839933 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F92181B43E9B200839933 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		726F91AB1B413F6100839933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		726F91AC1B413F6100839933 /* SVPullToRefreshExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPullToRefreshExampleTests.swift; sourceTree = "<group>"; };
 		726F91E01B4152AE00839933 /* SVPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SVPullToRefresh.framework; path = "/Users/alchemistli/Library/Developer/Xcode/DerivedData/SVPullToRefresh-bxabqlncvxpiljaosaouymzpchyn/Build/Products/Debug-iphoneos/SVPullToRefresh.framework"; sourceTree = "<absolute>"; };
+		726F92181B43E9B200839933 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				726F91961B413F6100839933 /* AppDelegate.swift */,
 				726F91981B413F6100839933 /* ViewController.swift */,
+				726F92181B43E9B200839933 /* TableViewController.swift */,
 				726F919A1B413F6100839933 /* Main.storyboard */,
 				726F919D1B413F6100839933 /* Images.xcassets */,
 				726F919F1B413F6100839933 /* LaunchScreen.xib */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				726F91991B413F6100839933 /* ViewController.swift in Sources */,
+				726F92191B43E9B200839933 /* TableViewController.swift in Sources */,
 				726F91971B413F6100839933 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
