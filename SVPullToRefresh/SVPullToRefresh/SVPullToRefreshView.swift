@@ -77,11 +77,7 @@ public class SVPullToRefreshView : UIView{
     
     var activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
     var textColor = UIColor.darkGrayColor()
-    var internalState: SVPullToRefreshState = .Stop {
-        didSet{
-            println("set internal state:\(internalState)")
-        }
-    }
+    var internalState: SVPullToRefreshState = .Stop
     var showsDateLabel = false
     var wasTriggeredByUser : Bool = true
     
@@ -158,7 +154,6 @@ public class SVPullToRefreshView : UIView{
     // todo: need improve
     public override func layoutSubviews() {
 
-        println("layout subviews : state : \(state)")
         switch(state)
         {
         case .Stop:
