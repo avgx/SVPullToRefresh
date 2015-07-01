@@ -19,10 +19,23 @@ public class SVPullToRefreshView : UIView{
         return fabs(Float(value1) - Float(value2)) < FLT_EPSILON
     }
     
-    public enum SVPullToRefreshState{
+    public enum SVPullToRefreshState: Printable{
         case Stop
         case Triggered
         case Loading
+        
+        public var description : String {
+            get{
+                switch(self){
+                case .Stop:
+                    return "Stop"
+                case .Loading:
+                    return "Loading"
+                case .Triggered:
+                    return "Triggered"
+                }
+            }
+        }
     }
     
     var state : SVPullToRefreshState {
@@ -32,7 +45,7 @@ public class SVPullToRefreshView : UIView{
                 let prevoiusState = internalState
                 internalState = newValue
                 
-                setNeedsDisplay()
+                setNeedsLayout()
                 layoutIfNeeded()
                 
                 switch(newValue){
@@ -64,7 +77,11 @@ public class SVPullToRefreshView : UIView{
     
     var activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
     var textColor = UIColor.darkGrayColor()
-    var internalState: SVPullToRefreshState = .Stop
+    var internalState: SVPullToRefreshState = .Stop {
+        didSet{
+            println("set internal state:\(internalState)")
+        }
+    }
     var showsDateLabel = false
     var wasTriggeredByUser : Bool = true
     
@@ -74,7 +91,7 @@ public class SVPullToRefreshView : UIView{
         
         let _arrow = SVPullToRefreshArrow(frame: CGRectMake(0, self.bounds.height - 54, 22, 48))
         
-        _arrow.backgroundColor = UIColor.greenColor()
+        _arrow.backgroundColor = UIColor.clearColor()
         
         self.addSubview(_arrow)
         
@@ -84,7 +101,7 @@ public class SVPullToRefreshView : UIView{
     lazy var activityIndicatorView : UIActivityIndicatorView = {
         [unowned self] in
         
-        let _activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let _activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: self.activityIndicatorViewStyle)
         
         _activityIndicator.hidesWhenStopped = true
         
@@ -113,7 +130,6 @@ public class SVPullToRefreshView : UIView{
     public func setup()
     {
         autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        backgroundColor = UIColor.whiteColor()
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
@@ -142,6 +158,7 @@ public class SVPullToRefreshView : UIView{
     // todo: need improve
     public override func layoutSubviews() {
 
+        println("layout subviews : state : \(state)")
         switch(state)
         {
         case .Stop:
@@ -357,7 +374,7 @@ public class SVPullToRefreshView : UIView{
     }
     
     public func stopAnimating() {
-        state = SVPullToRefreshState.Stop
+        state = .Stop
         
         switch(position){
         case .Top:

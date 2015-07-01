@@ -154,7 +154,6 @@ public extension UIScrollView {
                     bounds.width,
                     SVPullToRefreshConstants.SVPullToRefreshViewHeight))
                 
-                println("header view frame : \(headerView.frame)")
                 headerView.position = position
                 
                 addHeaderView(headerView)
