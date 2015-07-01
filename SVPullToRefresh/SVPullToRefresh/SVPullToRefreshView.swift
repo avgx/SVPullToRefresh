@@ -20,14 +20,14 @@ public class SVPullToRefreshView : UIView{
     }
     
     public enum SVPullToRefreshState: Printable{
-        case Stop
+        case Stopped
         case Triggered
         case Loading
         
         public var description : String {
             get{
                 switch(self){
-                case .Stop:
+                case .Stopped:
                     return "Stop"
                 case .Loading:
                     return "Loading"
@@ -49,7 +49,7 @@ public class SVPullToRefreshView : UIView{
                 layoutIfNeeded()
                 
                 switch(newValue){
-                case .Stop:
+                case .Stopped:
                     resetScrollViewContentInset()
                 case .Loading:
                     setScrollViewContentInsetForLoading()
@@ -77,7 +77,7 @@ public class SVPullToRefreshView : UIView{
     
     var activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
     var textColor = UIColor.darkGrayColor()
-    var internalState: SVPullToRefreshState = .Stop
+    var internalState: SVPullToRefreshState = .Stopped
     var showsDateLabel = false
     var wasTriggeredByUser : Bool = true
     
@@ -156,7 +156,7 @@ public class SVPullToRefreshView : UIView{
 
         switch(state)
         {
-        case .Stop:
+        case .Stopped:
             arrow.alpha = 1
             activityIndicatorView.stopAnimating()
             switch(position)
@@ -280,17 +280,17 @@ public class SVPullToRefreshView : UIView{
             {
                 state = .Loading
             }
-            else if contentOffset.y < scrollOffsetThread && scrollView.dragging && state == .Stop && position == .Top {
+            else if contentOffset.y < scrollOffsetThread && scrollView.dragging && state == .Stopped && position == .Top {
                 state = .Triggered
             }
-            else if contentOffset.y >= scrollOffsetThread && state != .Stop && position == .Top {
-                state = .Stop
+            else if contentOffset.y >= scrollOffsetThread && state != .Stopped && position == .Top {
+                state = .Stopped
             }
-            else if contentOffset.y > scrollOffsetThread && scrollView.dragging && state == .Stop && position == .Bottom {
+            else if contentOffset.y > scrollOffsetThread && scrollView.dragging && state == .Stopped && position == .Bottom {
                 state = .Triggered
             }
-            else if contentOffset.y <= scrollOffsetThread && state != .Stop && position == .Bottom {
-                state = .Stop
+            else if contentOffset.y <= scrollOffsetThread && state != .Stopped && position == .Bottom {
+                state = .Stopped
             }
         }
         else
@@ -369,7 +369,7 @@ public class SVPullToRefreshView : UIView{
     }
     
     public func stopAnimating() {
-        state = .Stop
+        state = .Stopped
         
         switch(position){
         case .Top:

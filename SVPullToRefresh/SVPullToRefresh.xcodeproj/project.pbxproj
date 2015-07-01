@@ -13,6 +13,8 @@
 		726F91DD1B41431100839933 /* SVPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F91DC1B41431100839933 /* SVPullToRefresh.swift */; };
 		726F91E51B415FC300839933 /* SVPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F91E41B415FC300839933 /* SVPullToRefreshView.swift */; };
 		726F92171B4276AA00839933 /* SVPullToRefreshArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F92161B4276AA00839933 /* SVPullToRefreshArrow.swift */; };
+		726F92511B440AEC00839933 /* SVInfiniteScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F92501B440AEC00839933 /* SVInfiniteScrolling.swift */; };
+		726F92531B440B4600839933 /* SVInfiniteScrollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F92521B440B4600839933 /* SVInfiniteScrollingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		726F91DC1B41431100839933 /* SVPullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPullToRefresh.swift; sourceTree = "<group>"; };
 		726F91E41B415FC300839933 /* SVPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPullToRefreshView.swift; sourceTree = "<group>"; };
 		726F92161B4276AA00839933 /* SVPullToRefreshArrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPullToRefreshArrow.swift; sourceTree = "<group>"; };
+		726F92501B440AEC00839933 /* SVInfiniteScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVInfiniteScrolling.swift; sourceTree = "<group>"; };
+		726F92521B440B4600839933 /* SVInfiniteScrollingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVInfiniteScrollingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 		726F91C21B413FCE00839933 /* SVPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				726F92501B440AEC00839933 /* SVInfiniteScrolling.swift */,
+				726F92521B440B4600839933 /* SVInfiniteScrollingView.swift */,
 				726F91DC1B41431100839933 /* SVPullToRefresh.swift */,
 				726F91E41B415FC300839933 /* SVPullToRefreshView.swift */,
 				726F92161B4276AA00839933 /* SVPullToRefreshArrow.swift */,
@@ -218,6 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				726F92531B440B4600839933 /* SVInfiniteScrollingView.swift in Sources */,
+				726F92511B440AEC00839933 /* SVInfiniteScrolling.swift in Sources */,
 				726F92171B4276AA00839933 /* SVPullToRefreshArrow.swift in Sources */,
 				726F91DD1B41431100839933 /* SVPullToRefresh.swift in Sources */,
 				726F91E51B415FC300839933 /* SVPullToRefreshView.swift in Sources */,

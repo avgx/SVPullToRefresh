@@ -11,11 +11,12 @@ import UIKit
 
     
 public enum SVPullToRefreshPosition{
-        case Top
-        case Bottom
+    case Top
+    case Bottom
 }
+
 public struct SVPullToRefreshConstants{
-        static let SVPullToRefreshViewHeight : CGFloat = 60
+    static let SVPullToRefreshViewHeight : CGFloat = 60
 }
 
 public extension UIScrollView {
@@ -125,12 +126,12 @@ public extension UIScrollView {
         }
         
         set{
-            willChangeValueForKey(PrivateKeyName.BottomRefreshViewKeyName)
             if let newValue = newValue {
+                willChangeValueForKey(PrivateKeyName.BottomRefreshViewKeyName)
                 objc_setAssociatedObject(self, &AssociatedKeys.BottomRefreshViewName,
                     newValue as SVPullToRefreshView?, UInt(OBJC_ASSOCIATION_ASSIGN))
+                didChangeValueForKey(PrivateKeyName.BottomRefreshViewKeyName)
             }
-            didChangeValueForKey(PrivateKeyName.BottomRefreshViewKeyName)
         }
     }
 
