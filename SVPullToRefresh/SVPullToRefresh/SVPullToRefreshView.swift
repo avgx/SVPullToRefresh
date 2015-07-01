@@ -113,6 +113,7 @@ public class SVPullToRefreshView : UIView{
     func setup()
     {
         autoresizingMask = UIViewAutoresizing.FlexibleWidth
+        backgroundColor = UIColor.whiteColor(j)
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
@@ -176,8 +177,8 @@ public class SVPullToRefreshView : UIView{
         }
         
         let width = max(arrow.bounds.width, activityIndicatorView.bounds.width)
-        arrow.center = center
-        activityIndicatorView.center = center
+        arrow.center = CGPointMake(bounds.width / 2 , bounds.height / 2)
+        activityIndicatorView.center = arrow.center
     }
     
     // MARK: - scroll view
