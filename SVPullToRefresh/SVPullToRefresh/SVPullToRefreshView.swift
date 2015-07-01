@@ -110,7 +110,7 @@ public class SVPullToRefreshView : UIView{
         setup()
     }
     
-    func setup()
+    public func setup()
     {
         autoresizingMask = UIViewAutoresizing.FlexibleWidth
         backgroundColor = UIColor.whiteColor()
@@ -328,7 +328,7 @@ public class SVPullToRefreshView : UIView{
     
     // MARK: -
     
-    func startAnimating(){
+    public func startAnimating(){
         switch(position)
         {
         case .Top:
@@ -356,7 +356,7 @@ public class SVPullToRefreshView : UIView{
         state = .Loading
     }
     
-    func stopAnimating() {
+    public func stopAnimating() {
         state = SVPullToRefreshState.Stop
         
         switch(position){
