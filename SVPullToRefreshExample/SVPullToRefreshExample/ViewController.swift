@@ -16,6 +16,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        scrollView.contentSize = CGSizeMake(scrollView.bounds.width, scrollView.bounds.height + 300)
         scrollView.addPullToRefreshWithAction({()->Void in println("hello")}, withPosition: .Top)
     }
 
@@ -25,5 +29,18 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func buttonPressed() {
+        
+        println("scroll view frame : \(scrollView.frame)")
+        println("scroll view insets : \(scrollView.contentInset.top), \(scrollView.contentInset.left), \(scrollView.contentInset.bottom), \(scrollView.contentInset.right), ")
+        println("scroll view offset : \(scrollView.contentOffset)")
+        println("scroll view content size : \(scrollView.contentSize)")
+        
+        if let view = scrollView.topRefreshView {
+            println("top refresh view frame : \(view.frame)")
+            view.backgroundColor = UIColor.cyanColor()
+            //println("view.arrow.frame : \(view.arrow.frame)")
+        }
+    }
 }
 

@@ -14,6 +14,9 @@ public enum SVPullToRefreshPosition{
         case Top
         case Bottom
 }
+public struct SVPullToRefreshConstants{
+        static let SVPullToRefreshViewHeight : CGFloat = 60
+}
 
 public extension UIScrollView {
     
@@ -27,9 +30,7 @@ public extension UIScrollView {
         static let BottomRefreshViewKeyName = "SVPullToRefreshViewBottom"
     }
     
-    private struct Constants{
-        static let SVPullToRefreshViewHeight : CGFloat = 60
-    }
+
     
     var showsTopPullToRefresh : Bool{
         set{
@@ -82,12 +83,12 @@ public extension UIScrollView {
             switch(refreshView.position)
             {
             case .Top:
-                yOrigin = -Constants.SVPullToRefreshViewHeight
+                yOrigin = -SVPullToRefreshConstants.SVPullToRefreshViewHeight
             case .Bottom:
                 yOrigin = contentSize.height
             }
             
-            refreshView.frame = CGRectMake(0, yOrigin, bounds.width, bounds.height)
+            refreshView.frame = CGRectMake(0, yOrigin, bounds.width, SVPullToRefreshConstants.SVPullToRefreshViewHeight)
         }
     }
     
@@ -149,10 +150,11 @@ public extension UIScrollView {
         case .Top:
             if topRefreshView == nil {
                 let headerView = SVPullToRefreshView(frame: CGRectMake(0,
-                    -Constants.SVPullToRefreshViewHeight,
+                    -SVPullToRefreshConstants.SVPullToRefreshViewHeight,
                     bounds.width,
-                    Constants.SVPullToRefreshViewHeight))
+                    SVPullToRefreshConstants.SVPullToRefreshViewHeight))
                 
+                println("header view frame : \(headerView.frame)")
                 headerView.position = position
                 
                 addHeaderView(headerView)
@@ -166,7 +168,7 @@ public extension UIScrollView {
                 let headerView = SVPullToRefreshView(frame: CGRectMake(0,
                     contentSize.height,
                     bounds.width,
-                    Constants.SVPullToRefreshViewHeight))
+                    SVPullToRefreshConstants.SVPullToRefreshViewHeight))
                 
                 headerView.position = position
                 
