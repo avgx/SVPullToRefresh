@@ -30,6 +30,17 @@ class ViewController: UIViewController {
             })
             },
             withPosition: .Top)
+        
+        scrollView.addPullToRefreshWithAction({ () -> Void in
+            println("hello")
+            let delayInSeconds : Int64 = 2
+            let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
+            
+            dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
+                self.scrollView.bottomRefreshView!.stopAnimating()
+            })
+            },
+            withPosition: .Bottom)
     }
 
     override func didReceiveMemoryWarning() {
