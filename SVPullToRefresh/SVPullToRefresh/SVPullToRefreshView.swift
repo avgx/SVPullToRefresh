@@ -113,7 +113,7 @@ public class SVPullToRefreshView : UIView{
     func setup()
     {
         autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        backgroundColor = UIColor.whiteColor(j)
+        backgroundColor = UIColor.whiteColor()
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
