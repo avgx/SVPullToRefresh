@@ -29,7 +29,7 @@ class TableViewController: UITableViewController
     }
     
     override func viewDidLoad() {
-        for i in 1...10 {
+        for i in 1...20 {
             dataSource.append(String(i))
         }
         
@@ -49,8 +49,24 @@ class TableViewController: UITableViewController
             },
             withPosition: .Top)
         
-        tableView.addPullToRefreshWithAction({ () -> Void in
-            
+//        tableView.addPullToRefreshWithAction({ () -> Void in
+//            
+//            for i in 1...10 {
+//                self.dataSource.append(String(i))
+//            }
+//            
+//            let delayInSeconds : Int64 = 2
+//            let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
+//            
+//            dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
+//                self.tableView.bottomRefreshView!.stopAnimating()
+//                self.tableView.reloadData()
+//            })
+//            
+//            }, withPosition: .Bottom)
+        
+        tableView.addInfiniteScrollingWithActionHandler { () -> Void in
+
             for i in 1...10 {
                 self.dataSource.append(String(i))
             }
@@ -59,11 +75,10 @@ class TableViewController: UITableViewController
             let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
             
             dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
-                self.tableView.bottomRefreshView!.stopAnimating()
+                self.tableView.infiniteScrollingView!.stopAnimating()
                 self.tableView.reloadData()
             })
-            
-            }, withPosition: .Bottom)
+        }
     }
 
 }

@@ -18,11 +18,11 @@ public extension UIScrollView
         static let InfiniteScrollingViewName = "InifiniteScrollingView"
     }
     
-    public var infiniteScrollingView : SVInfiniteScrollingView {
+    public var infiniteScrollingView : SVInfiniteScrollingView? {
         get{
             return objc_getAssociatedObject(self,
                 &AssociatedKey.InfiniteScrollingViewName)
-                as! SVInfiniteScrollingView
+                as! SVInfiniteScrollingView?
         }
         
         set
@@ -31,7 +31,7 @@ public extension UIScrollView
                 
             objc_setAssociatedObject(self,
                 &AssociatedKey.InfiniteScrollingViewName,
-                newValue as SVInfiniteScrollingView,
+                newValue as SVInfiniteScrollingView?,
                 UInt(OBJC_ASSOCIATION_ASSIGN))
 
         }
@@ -39,49 +39,74 @@ public extension UIScrollView
     
     public var showsInfiniteScrolling : Bool {
         set{
-            infiniteScrollingView.hidden = !newValue
+            infiniteScrollingView!.hidden = !newValue
             
             if !newValue
             {
-                if infiniteScrollingView.observing {
-                    removeObserver(infiniteScrollingView, forKeyPath: "contentOffset")
-                    removeObserver(infiniteScrollingView, forKeyPath: "contentSize")
-                    infiniteScrollingView.resetScrollViewContentInset()
-                    infiniteScrollingView.observing = false
+                if infiniteScrollingView!.observing
+                {
+                    removeObserver(infiniteScrollingView!, forKeyPath: "contentOffset")
+                    removeObserver(infiniteScrollingView!, forKeyPath: "contentSize")
+                    infiniteScrollingView!.resetScrollViewContentInset()
+                    infiniteScrollingView!.observing = false
                 }
             }
             else
             {
-                if !infiniteScrollingView.observing
+                if !infiniteScrollingView!.observing
                 {
-                    addObserver(infiniteScrollingView,
+                    addObserver(infiniteScrollingView!,
                         forKeyPath: "contentOffset",
                         options: NSKeyValueObservingOptions.New,
                         context: nil)
                     
-                    addObserver(infiniteScrollingView,
+                    addObserver(infiniteScrollingView!,
                         forKeyPath: "contentSize",
                         options: NSKeyValueObservingOptions.New,
                         context: nil)
                     
-                    infiniteScrollingView.observing = true
+                    infiniteScrollingView!.setScrollViewContentInsetForInfiniteScrolling()
+                    
+                    infiniteScrollingView!.observing = true
+                    
+                    infiniteScrollingView!.setNeedsLayout()
+                    layoutIfNeeded()
+                    infiniteScrollingView!.frame = CGRectMake(0,
+                        contentSize.height,
+                        infiniteScrollingView!.bounds.width,
+                        SVInfiniteScrollingConstants.SVInfiniteScrollingViewHeight)
                 }
             }
         }
         
         get {
-            return !infiniteScrollingView.hidden
+            return !infiniteScrollingView!.hidden
         }
     }
     
     public func addInfiniteScrollingWithActionHandler(handler: ()->Void)
     {
-        //todo:
+        if self.infiniteScrollingView == nil {
+            let view = SVInfiniteScrollingView(frame:
+                CGRectMake(0,
+                    contentSize.height,
+                    bounds.width,
+                    SVInfiniteScrollingConstants.SVInfiniteScrollingViewHeight
+                ))
+            view.infiniteScrollingHandler = handler
+            view.scrollView = self
+            addSubview(view)
+            
+            view.originalBottomInset = contentInset.bottom
+            infiniteScrollingView = view
+            showsInfiniteScrolling = true
+        }
     }
     
     public func triggerInfiniteScrolling()
     {
-        //todo:
+        infiniteScrollingView!.state = .Triggered
+        infiniteScrollingView!.startAnimating()
     }
     
 }
