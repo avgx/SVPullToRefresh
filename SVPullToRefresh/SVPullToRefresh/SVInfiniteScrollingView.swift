@@ -37,11 +37,12 @@ public class SVInfiniteScrollingView : UIView
     var observing : Bool = false
     var distanceToBottom : CGFloat = 49
     
-    var internalState : SVInfiniteScrollingState = .Stopped {
-        didSet{
-            println("set state : \(internalState)")
-        }
-    }
+    var internalState : SVInfiniteScrollingState = .Stopped
+//    {
+//        didSet{
+//            println("set state : \(internalState)")
+//        }
+//    }
     
     var state : SVInfiniteScrollingState{
         get{
