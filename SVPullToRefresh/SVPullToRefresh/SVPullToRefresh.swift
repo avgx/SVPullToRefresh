@@ -135,10 +135,10 @@ public extension UIScrollView {
         }
     }
 
-    public func addPullToRefreshWithAction(handler: ()->Void, withPosition position:SVPullToRefreshPosition){
+    public func addPullToRefreshWithAction(position:SVPullToRefreshPosition, triggeredHandler: ()->Void){
         
         func addHeaderView(headerView: SVPullToRefreshView){
-            headerView.pullToRefreshHandler = handler
+            headerView.pullToRefreshHandler = triggeredHandler
             headerView.scrollView = self
             headerView.originalTopInset = contentInset.top
             headerView.originalBottomInset = contentInset.bottom

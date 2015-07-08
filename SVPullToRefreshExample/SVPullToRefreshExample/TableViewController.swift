@@ -33,8 +33,7 @@ class TableViewController: UITableViewController
             dataSource.append(String(i))
         }
         
-        tableView.addPullToRefreshWithAction({ [unowned self] () -> Void in
-            
+        tableView.addPullToRefreshWithAction(.Top, triggeredHandler: { () -> Void in
             for i in 1...10 {
                 self.dataSource.append(String(i))
             }
@@ -46,8 +45,7 @@ class TableViewController: UITableViewController
                 self.tableView.topRefreshView!.stopAnimating()
                 self.tableView.reloadData()
             })
-            },
-            withPosition: .Top)
+        })
         
 //        tableView.addPullToRefreshWithAction({ () -> Void in
 //            

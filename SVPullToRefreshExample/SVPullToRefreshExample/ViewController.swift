@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         scrollView.contentSize = CGSizeMake(scrollView.bounds.width, scrollView.bounds.height)
-        scrollView.addPullToRefreshWithAction({()->Void in
+        scrollView.addPullToRefreshWithAction(.Top, triggeredHandler: { () -> Void in
             println("hello")
             let delayInSeconds : Int64 = 2
             let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
@@ -28,10 +28,9 @@ class ViewController: UIViewController {
             dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
                 self.scrollView.topRefreshView!.stopAnimating()
             })
-            },
-            withPosition: .Top)
+        })
         
-        scrollView.addPullToRefreshWithAction({ () -> Void in
+        scrollView.addPullToRefreshWithAction(.Bottom, triggeredHandler: { () -> Void in
             println("hello")
             let delayInSeconds : Int64 = 2
             let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
@@ -39,8 +38,7 @@ class ViewController: UIViewController {
             dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
                 self.scrollView.bottomRefreshView!.stopAnimating()
             })
-            },
-            withPosition: .Bottom)
+        })
     }
 
     override func didReceiveMemoryWarning() {
