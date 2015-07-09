@@ -39,6 +39,8 @@ class ViewController: UIViewController {
                 self.scrollView.bottomRefreshView!.stopAnimating()
             })
         })
+        
+        scrollView.triggerPullToRefresh(.Top)
     }
 
     override func didReceiveMemoryWarning() {

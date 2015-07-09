@@ -28,6 +28,12 @@ class TableViewController: UITableViewController
         return cell
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.triggerPullToRefresh(.Top)
+    }
+    
     override func viewDidLoad() {
         for i in 1...20 {
             dataSource.append(String(i))

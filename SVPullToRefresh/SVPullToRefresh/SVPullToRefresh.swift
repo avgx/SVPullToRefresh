@@ -192,6 +192,7 @@ public extension UIScrollView {
             pullToRefreshView = bottomRefreshView
         }
         
+        pullToRefreshView.state = .Triggered
         pullToRefreshView.startAnimating()
     }
 }
