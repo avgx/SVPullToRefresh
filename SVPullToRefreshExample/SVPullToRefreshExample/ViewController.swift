@@ -20,18 +20,23 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         scrollView.contentSize = CGSizeMake(scrollView.bounds.width, scrollView.bounds.height)
-        scrollView.addPullToRefreshWithAction(.Top, triggeredHandler: { () -> Void in
-            println("hello")
+        scrollView.addPullToRefreshWithAction(.Top, triggeredHandler: {
+            () -> Void in
+            
             let delayInSeconds : Int64 = 2
             let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
             
-            dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
-                self.scrollView.topRefreshView!.stopAnimating()
+            dispatch_after(popTime, dispatch_get_main_queue(), {
+                [weak self]
+                () -> Void in
+                
+                if let weakSelf = self {
+                    weakSelf.scrollView.topRefreshView?.stopAnimating()
+                }
             })
         })
         
         scrollView.addPullToRefreshWithAction(.Bottom, triggeredHandler: { () -> Void in
-            println("hello")
             let delayInSeconds : Int64 = 2
             let popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC))
             
@@ -42,12 +47,6 @@ class ViewController: UIViewController {
         
         scrollView.triggerPullToRefresh(.Top)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     @IBAction func buttonPressed() {
         

@@ -143,8 +143,8 @@ public class SVPullToRefreshView : UIView{
                 if isShowing
                 {
                     scrollView .removeObserver(self, forKeyPath: "contentOffset")
-                    scrollView .removeObserver(self, forKeyPath: "contentOffset")
-                    scrollView .removeObserver(self, forKeyPath: "contentOffset")
+                    scrollView .removeObserver(self, forKeyPath: "contentSize")
+                    scrollView .removeObserver(self, forKeyPath: "frame")
                     isObserving = false
                 }
             }
